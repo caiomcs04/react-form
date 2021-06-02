@@ -1,10 +1,12 @@
 import './App.css';
+import RegisterForm from './components/form/RegisterForm';
 
 function App() {
   return (
-    <div className="App">
-      Teste
-    </div>
+    <>
+    <h1>Formulario</h1>
+    <RegisterForm />
+    </>
   );
 }
 
