@@ -117,8 +117,9 @@ function PersonalData(props) {
       <Button
         type="submit"
         variant="contained"
-        color="primary">
-        Cadastrar
+        color="primary"
+        onClick={()=>props.next()}>
+        Próximo
       </Button>
     </form>
   )

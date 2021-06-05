@@ -34,7 +34,8 @@ function AddressData() {
       <Button
         type="submit"
         variant="contained"
-        color="primary">
+        color="primary"
+        fullWidth>
         Cadastrar
       </Button>
     </form>
