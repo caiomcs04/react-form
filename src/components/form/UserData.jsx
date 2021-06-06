@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import { TextField } from '@material-ui/core';
 import Button from "@material-ui/core/Button"
+import {passwordValidation} from "../../utils/Validations"
 
 function UserData(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false)
 
   return (
-    <form onSubmit={(event)=>{
+    <form onSubmit={(event) => {
       event.preventDefault();
-      props.handleForm({email,password})
+      if (passwordValidation(password).valid) {
+        props.handleForm({ email, password })
+      }else{
+        setPasswordError(true)
+      }
     }}>
       <TextField type="email"
         label="email"
@@ -25,6 +31,8 @@ function UserData(props) {
         type="password"
         value={password}
         label="password"
+        error={passwordError}
+        helperText={passwordError ? passwordValidation(password).errorMsg : ""}
         id="password"
         fullWidth
         margin="normal"
@@ -36,7 +44,7 @@ function UserData(props) {
         type="submit"
         variant="contained"
         color="primary"
-        onClick={() => props.next()}>
+      >
         Próximo
       </Button>
     </form>

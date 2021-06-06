@@ -3,7 +3,8 @@ import Button from '@material-ui/core/Button';
 import TextField from "@material-ui/core/TextField"
 import Switch from "@material-ui/core/Switch"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
-import cpfValidadtion from "../../utils/Validations"
+import {cpfValidation} from "../../utils/Validations"
+import cpfMask from "../../utils/Mask"
 
 
 function PersonalData(props) {
@@ -13,39 +14,16 @@ function PersonalData(props) {
   const [promotions, setPromotions] = useState(true)
   const [news, setNews] = useState(true)
   const [cpfError, setCpfError] = useState(false)
-  const [cpfErrorMsg, setCpfErrorMsg] = useState("")
-
-  const cpfMask = (value) => {
-    return value
-      .replace(/\D/g, "")
-      .replace(/(\d{3})(\d)/, "$1.$2")
-      .replace(/(\d{3})(\d)/, "$1.$2")
-      .replace(/(\d{3})(\d{1,2})/, "$1-$2")
-      .replace(/(-\d{2})\d+?$/, "$1");
-  };
-
-  const cpfCheck = (cpfValue) => {
-    cpfValue.replace("-","").replace(".","").replace(".","")
-
-    if (cpfValue.length === 14) {
-      if (cpfValidadtion(cpfValue)) {
-        setCpfErrorMsg("")
-        return false
-      } else {
-        setCpfErrorMsg("CPF inválido")
-        return true
-      }
-    }else{
-      setCpfErrorMsg("CPF precisa ter 11 dígitos")
-      return true
-    }
-  }
 
 
   return (
-    <form onSubmit={(event)=>{
+    <form onSubmit={(event) => {
       event.preventDefault();
-      props.handleForm({name,surname,cpf,promotions,news})
+      if (cpfValidation(cpf).valid) {
+        props.handleForm({ name, surname, cpf, promotions, news })
+      }else{
+        setCpfError(true)
+      }
     }}>
       <TextField
         value={name}
@@ -74,11 +52,9 @@ function PersonalData(props) {
         onChange={(event) => {
           setCpf(cpfMask(event.target.value))
         }}
-        onBlur={() => {
-          cpfCheck(cpf) ? setCpfError(true) : setCpfError(false)
-        }}
+        name="cpf"
         error={cpfError}
-        helperText={cpfErrorMsg}
+        helperText={cpfError ? cpfValidation(cpf).errorMsg : ""}
         margin="normal"
         variant="outlined"
         id="cpf"
@@ -118,7 +94,7 @@ function PersonalData(props) {
         type="submit"
         variant="contained"
         color="primary"
-        onClick={()=>props.next()}>
+      >
         Próximo
       </Button>
     </form>
