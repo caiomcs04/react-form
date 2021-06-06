@@ -8,7 +8,7 @@ import cpfValidadtion from "../../utils/Validations"
 
 function PersonalData(props) {
   const [name, setName] = useState("");
-  const [surName, setSurname] = useState("");
+  const [surname, setSurname] = useState("");
   const [cpf, setCpf] = useState("")
   const [promotions, setPromotions] = useState(true)
   const [news, setNews] = useState(true)
@@ -43,9 +43,9 @@ function PersonalData(props) {
 
 
   return (
-    <form onSubmit={(event) => {
+    <form onSubmit={(event)=>{
       event.preventDefault();
-      props.handleForm({ name, surName, cpf, promotions, news })
+      props.handleForm({name,surname,cpf,promotions,news})
     }}>
       <TextField
         value={name}
@@ -59,7 +59,7 @@ function PersonalData(props) {
         label="Nome"
       />
       <TextField
-        value={surName}
+        value={surname}
         onChange={(event) => {
           setSurname(event.target.value)
         }}
