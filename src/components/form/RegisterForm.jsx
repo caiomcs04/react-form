@@ -5,13 +5,15 @@ import AddressData from './AddressData'
 import Typography from "@material-ui/core/Typography"
 import Stepper from "@material-ui/core/Stepper"
 import { Step,StepLabel } from '@material-ui/core';
+import {cpfValidation, passwordValidation} from "../../utils/Validations"
+
 
 
 
 function RegisterForm(props) {
   const forms = [
-    <UserData handleForm={handleData}/>,
-    <PersonalData handleForm={handleData} />,
+    <UserData handleForm={handleData} validations={{password:passwordValidation}}/>,
+    <PersonalData handleForm={handleData} validations={{cpf:cpfValidation}}/>,
     <AddressData handleForm={handleData} />,
     <Typography variant="h3">Cadastro Feito</Typography>
   ]

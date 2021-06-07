@@ -7,6 +7,7 @@ function UserData(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState(false)
+  const [erros, setErros] = useState({password: {valid:true , errorMsg:""}})
 
   return (
     <form onSubmit={(event) => {
@@ -22,6 +23,7 @@ function UserData(props) {
         value={email}
         id="email"
         fullWidth
+        name="email"
         margin="normal"
         variant="outlined"
         onChange={(event) => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Button } from "@material-ui/core"
+import { TextField, Button, Grid } from "@material-ui/core"
 
 function AddressData(props) {
   const [cep, setCep] = useState("")
@@ -34,24 +34,26 @@ function AddressData(props) {
         onChange={(event) => {
           setAddress(event.target.value)
         }} />
-      <TextField type="number"
-        value={number}
-        label="numero"
-        id="number"
-        margin="normal"
-        variant="outlined"
-        onChange={(event) => {
-          setNumber(event.target.value)
-        }} />
-      <TextField type="text"
-        label="estado"
-        value={state}
-        id="state"
-        margin="normal"
-        variant="outlined"
-        onChange={(event) => {
-          setState(event.target.value)
-        }} />
+        <TextField type="number"
+          value={number}
+          label="numero"
+          id="number"
+          margin="normal"
+          fullWidth
+          variant="outlined"
+          onChange={(event) => {
+            setNumber(event.target.value)
+          }} />
+        <TextField type="text"
+          label="estado"
+          value={state}
+          id="state"
+          fullWidth
+          margin="normal"
+          variant="outlined"
+          onChange={(event) => {
+            setState(event.target.value)
+          }} />
       <TextField type="text"
         value={city}
         label="cidade"

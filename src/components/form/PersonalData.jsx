@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from "@material-ui/core/TextField"
 import Switch from "@material-ui/core/Switch"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
-import {cpfValidation} from "../../utils/Validations"
+import {cpfValidation, nameValidation} from "../../utils/Validations"
 import cpfMask from "../../utils/Mask"
 
 
@@ -14,22 +14,35 @@ function PersonalData(props) {
   const [promotions, setPromotions] = useState(true)
   const [news, setNews] = useState(true)
   const [cpfError, setCpfError] = useState(false)
+  const [nameError, setNameError] = useState(false)
+
+
+  
+  function inputCheck() {
+    if(cpfValidation(cpf).valid && nameValidation(name).valid){
+      return true
+    }
+    return false
+  }
 
 
   return (
     <form onSubmit={(event) => {
       event.preventDefault();
-      if (cpfValidation(cpf).valid) {
+      if (inputCheck()) {
         props.handleForm({ name, surname, cpf, promotions, news })
-      }else{
-        setCpfError(true)
       }
     }}>
       <TextField
-        value={name}
+        value={name ? nameValidation(name).value : ""}
         onChange={(event) => {
           setName(event.target.value)
         }}
+        onBlur={()=>{
+          setNameError(!nameValidation(name).valid)
+        }}
+        error={nameError}
+        helperText={nameError ? nameValidation(name).errorMsg : ""}
         margin="normal"
         variant="outlined"
         id="name"
@@ -51,6 +64,9 @@ function PersonalData(props) {
         value={cpf}
         onChange={(event) => {
           setCpf(cpfMask(event.target.value))
+        }}
+        onBlur={()=>{
+          setCpfError(!cpfValidation(cpf).valid)
         }}
         name="cpf"
         error={cpfError}
