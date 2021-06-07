@@ -12,7 +12,7 @@
 
 > Clone this project in your machine with the command:
 > ```
-> 	git clone [https://github.com/caiomcs04/notes-generator.git]
+> 	git clone [https://github.com/caiomcs04/react-form.git]
 > ```
 >Access your terminal project folder:
 > ```
@@ -34,7 +34,7 @@
 ## Functionalities
 
 > This project aims at the functionality of being: 
-> - An app to create notes in order to organize the user's tasks;
+> - A sample of a basic form using material-ui, focused on programming practice
 
 ## Authors
 
