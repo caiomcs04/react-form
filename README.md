@@ -29,7 +29,7 @@
 > ```
 > 	npm start
 > ```
->The application will be available for viewing in your browser, if this does not happen automatically open the browser at the following address: _localhost: 3000_
+> The application will be available for viewing in your browser, if this does not happen automatically open the browser at the following address: _localhost: 3000_
 
 ## Functionalities
 
